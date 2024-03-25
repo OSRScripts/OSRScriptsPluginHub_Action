@@ -11,9 +11,6 @@ async function run(): Promise<void> {
         const pluginFolder = core.getInput('pluginFolder', {required:true});
         const pluginDescription = core.getInput('pluginDescription', {required: false})
         
-        console.log('pluginJson', pluginJsonPath);
-        console.log('pluginJarPath', pluginJarPath)
-
         let pluginsFile = fs.readFileSync(pluginJsonPath, 'utf8');
         let pluginsData = JSON.parse(pluginsFile);
 
@@ -42,7 +39,7 @@ async function run(): Promise<void> {
 
         pluginsData = JSON.stringify(filteredData, null, 2);
 
-        fs.writeFileSync(pluginsFile, pluginsData, 'utf8');
+        fs.writeFileSync(pluginJsonPath, pluginsData, 'utf8');
     } catch(error) {
         if (error instanceof Error) core.setFailed(error.message);
     }
