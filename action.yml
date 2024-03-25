@@ -1,0 +1,21 @@
+name: Modify Plugins JSON from OSRScriptsPluginHub
+description: Modifies and add plugins to the json file for OSRScriptsPluginHub
+inputs:
+  pluginName:
+    required: true
+    description: "Display name for plugin"
+  pluginJar:
+    required: true
+    description: "File path for plugin jar"
+  pluginClassPath:
+    required: true
+    description: "Class path for the plugin"
+  pluginFolder:
+    required: true
+    description: "Folder name for the plugin"
+  pluginDescription:
+    required: false
+    description: "Description for the plugin"
+runs:
+  using: 'node20'
+  main: 'index.js'
