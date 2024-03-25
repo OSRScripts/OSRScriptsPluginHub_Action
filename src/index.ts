@@ -11,6 +11,9 @@ async function run(): Promise<void> {
         const pluginFolder = core.getInput('pluginFolder', {required:true});
         const pluginDescription = core.getInput('pluginDescription', {required: false})
         
+        console.log('pluginJson', pluginJsonPath);
+        console.log('pluginJarPath', pluginJarPath)
+
         let pluginsFile = fs.readFileSync(pluginJsonPath, 'utf8');
         let pluginsData = JSON.parse(pluginsFile);
 
