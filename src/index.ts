@@ -4,26 +4,21 @@ import crypto from 'crypto';
 
 async function run(): Promise<void> {
     try {
+        const pluginJsonPath = core.getInput('pluginJson', {required: true})
         const pluginName = core.getInput('pluginName', {required:true});
-        const pluginJar = core.getInput('pluginJar', {required:true});
+        const pluginJarPath = core.getInput('pluginJar', {required:true});
         const pluginClassPath = core.getInput('pluginClassPath', {required:true});
         const pluginFolder = core.getInput('pluginFolder', {required:true});
         const pluginDescription = core.getInput('pluginDescription', {required: false})
-
-        console.log('pluginName', pluginName);
-        console.log('pluginJar', pluginJar);
-        console.log('pluginClassPath', pluginClassPath);
-        console.log('pluginFolder', pluginFolder);
-        console.log('pluginDescription', pluginDescription);
         
-        let pluginsFile = fs.readFileSync('plugins.json', 'utf8');
+        let pluginsFile = fs.readFileSync(pluginJsonPath, 'utf8');
         let pluginsData = JSON.parse(pluginsFile);
 
         if (!Array.isArray(pluginsData)) {
             pluginsData = [];
         }
 
-        let jarFile = fs.readFileSync(pluginJar, 'binary');
+        let jarFile = fs.readFileSync(pluginJarPath, 'binary');
         const sha256Hash = crypto.createHash('sha256').update(jarFile).digest('hex');
         const fileSizeInBytes = fs.statSync(jarFile).size;
 

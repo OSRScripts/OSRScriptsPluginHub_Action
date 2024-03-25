@@ -1,6 +1,9 @@
 name: Modify Plugins JSON from OSRScriptsPluginHub
 description: Modifies and add plugins to the json file for OSRScriptsPluginHub
 inputs:
+  pluginJson:
+    required: true
+    description: "Path for plugin.json file"
   pluginName:
     required: true
     description: "Display name for plugin"
