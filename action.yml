@@ -21,4 +21,4 @@ inputs:
     description: "Description for the plugin"
 runs:
   using: 'node20'
-  main: 'index.js'
+  main: 'lib/index.js'

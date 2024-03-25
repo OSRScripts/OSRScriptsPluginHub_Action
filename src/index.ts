@@ -20,7 +20,7 @@ async function run(): Promise<void> {
 
         let jarFile = fs.readFileSync(pluginJarPath);
         const sha256Hash = crypto.createHash('sha256').update(jarFile).digest('hex');
-        //const fileSizeInBytes = fs.statSync(pluginJarPath).size;
+        const fileSizeInBytes = fs.statSync(pluginJarPath).size;
 
         const pluginJson = {
             internalName: pluginFolder,
