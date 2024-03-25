@@ -18,9 +18,9 @@ async function run(): Promise<void> {
             pluginsData = [];
         }
 
-        let jarFile = fs.readFileSync(pluginJarPath, 'binary');
+        let jarFile = fs.readFileSync(pluginJarPath);
         const sha256Hash = crypto.createHash('sha256').update(jarFile).digest('hex');
-        const fileSizeInBytes = fs.statSync(jarFile).size;
+        const fileSizeInBytes = fs.statSync(pluginJarPath).size;
 
         const pluginJson = {
             internalName: pluginFolder,
