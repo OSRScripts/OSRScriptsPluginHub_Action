@@ -13,6 +13,10 @@ async function run(): Promise<void> {
         let pluginsFile = fs.readFileSync("plugins.json", 'utf8');
         let pluginsData = JSON.parse(pluginsFile);
 
+        if (!Array.isArray(pluginsData)) {
+            pluginsData = [];
+        }
+
         let jarFile = fs.readFileSync(pluginJar);
         const sha256Hash = crypto.createHash('sha256').update(jarFile).digest('hex');
         const fileSizeInBytes = fs.statSync(jarFile).size;

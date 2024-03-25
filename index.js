@@ -51,6 +51,9 @@ function run() {
                 pluginDescription = core.getInput('pluginDescription', { required: false });
                 pluginsFile = fs_1.default.readFileSync("plugins.json", 'utf8');
                 pluginsData = JSON.parse(pluginsFile);
+                if (!Array.isArray(pluginsData)) {
+                    pluginsData = [];
+                }
                 jarFile = fs_1.default.readFileSync(pluginJar);
                 sha256Hash = crypto_1.default.createHash('sha256').update(jarFile).digest('hex');
                 fileSizeInBytes = fs_1.default.statSync(jarFile).size;
