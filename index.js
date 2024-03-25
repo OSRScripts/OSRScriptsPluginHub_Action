@@ -37,8 +37,8 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core = require("@actions/core");
-var fs_1 = require("fs");
-var crypto_1 = require("crypto");
+var fs = require("fs");
+var crypto = require("crypto");
 function run() {
     return __awaiter(this, void 0, void 0, function () {
         var pluginName, pluginJar, pluginClassPath, pluginFolder_1, pluginDescription, pluginsFile, pluginsData, jarFile, sha256Hash, fileSizeInBytes, pluginJson, filteredData;
@@ -49,14 +49,14 @@ function run() {
                 pluginClassPath = core.getInput('pluginClassPath', { required: true });
                 pluginFolder_1 = core.getInput('pluginFolder', { required: true });
                 pluginDescription = core.getInput('pluginDescription', { required: false });
-                pluginsFile = fs_1.default.readFileSync("plugins.json", 'utf8');
+                pluginsFile = fs.readFileSync("plugins.json", 'utf8');
                 pluginsData = JSON.parse(pluginsFile);
                 if (!Array.isArray(pluginsData)) {
                     pluginsData = [];
                 }
-                jarFile = fs_1.default.readFileSync(pluginJar);
-                sha256Hash = crypto_1.default.createHash('sha256').update(jarFile).digest('hex');
-                fileSizeInBytes = fs_1.default.statSync(jarFile).size;
+                jarFile = fs.readFileSync(pluginJar);
+                sha256Hash = crypto.createHash('sha256').update(jarFile).digest('hex');
+                fileSizeInBytes = fs.statSync(jarFile).size;
                 pluginJson = {
                     internalName: pluginFolder_1,
                     hash: sha256Hash,
@@ -71,7 +71,7 @@ function run() {
                 filteredData = pluginsData.filter(function (item) { return item.internalName !== pluginFolder_1; });
                 filteredData.push(pluginJson);
                 pluginsData = JSON.stringify(filteredData, null, 2);
-                fs_1.default.writeFileSync(pluginsFile, pluginsData, 'utf8');
+                fs.writeFileSync(pluginsFile, pluginsData, 'utf8');
             }
             catch (error) {
                 if (error instanceof Error)

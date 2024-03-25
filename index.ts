@@ -1,6 +1,6 @@
 import * as core from '@actions/core';
-import fs from 'fs';
-import crypto from 'crypto'
+import * as fs from 'fs';
+import * as crypto from 'crypto';
 
 async function run(): Promise<void> {
     try {
