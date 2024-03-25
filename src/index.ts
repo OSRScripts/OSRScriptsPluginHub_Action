@@ -25,7 +25,7 @@ async function run(): Promise<void> {
         const pluginJson = {
             internalName: pluginFolder,
             hash: sha256Hash,
-            size: 0,
+            size: fileSizeInBytes,
             plugins: [
               pluginClassPath
             ],
